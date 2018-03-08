@@ -1,0 +1,10 @@
+Aqui estão algumas mods do phpBB.
+
+O ficheiro db.php foi modificado para permitir o login por e-mail:
+
+http://sysblog.hallonet.se/phpbb-3-1-login-with-e-mail-address/
+Open /phpbb_root/phpbb/auth/provider/db.php and search for $username_clean = utf8_clean_string($username);. Just below that, make sure the SQL-query looks like this instead:
+
+$sql = 'SELECT *
+FROM ' . USERS_TABLE . "
+WHERE user_email = '" . $this->db->sql_escape($username_clean) . "' OR username_clean = '" . $this->db->sql_escape($username_clean) . "'";
